@@ -27,7 +27,7 @@
     <Compile Include="PyCAIT.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="我的积木216.xml" />
+    <Content Include="MySnap2-20.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

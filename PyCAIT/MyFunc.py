@@ -1,19 +1,19 @@
-var response = '123', i, header;
-function myFun() {
-  if(proc.httpRequest.readyState == 4 && proc.httpRequest.status == 200){    
-    response = proc.httpRequest.responseText;
-    //console.log(proc.httpRequest);
-    console.log(response);
-    return response
-  }
-}
+'''
+var response, status, i, header;
 if (!proc.httpRequest) {
   proc.httpRequest = new XMLHttpRequest();
-  proc.httpRequest.onreadystatechange = myFun; 
   proc.httpRequest.open(method, url, true);
   proc.httpRequest.send(data || null);
+} else if (proc.httpRequest.readyState === 4) {
+  response = proc.httpRequest.responseText;
+  status = proc.httpRequest.status;
+  proc.httpRequest = null;
+  if (status === 200) {
+    return response;
+  } else {
+    throw new Error(response);
+  }
 }
 proc.pushContext('doYield');
 proc.pushContext();
-console.log(proc.httpRequest);
-return response;
+'''

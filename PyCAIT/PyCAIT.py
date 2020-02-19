@@ -7,7 +7,7 @@ def recongnize_face():
     res = {}
     res["name"] = "Michael"
     res["coordinates"] = [23, 55, 56, 175]
-    return dumps(res)
+    return res
 #####
 
 Host = '127.0.0.1'
@@ -22,6 +22,12 @@ HTTP/1.x 200 ok
 Access-Control-Allow-Origin: *
 
 '''
+Erro = '''
+HTTP/1.x 500 Internal Server Error
+Access-Control-Allow-Origin: *
+
+Python Error: '''
+Res = ""
 
 while 1:
     Conn, Addr = Server.accept()
@@ -32,9 +38,13 @@ while 1:
         if Sent:
             print(Sent)
             exec("Res = " + Sent)
-            print("Res = " + str(Res))
+            Res = dumps(Res)
+            print("Res = " + Res)
             Conn.sendall(bytes(Cont + str(Res), 'UTF-8'))
-    except Exception as e:
-        print(e)
+            print("============\n\n")
+
+    except Exception as Res:
+        print(Res)
+        Conn.sendall(bytes(Erro + str(Res), 'UTF-8'))
     finally:
         Conn.close()
