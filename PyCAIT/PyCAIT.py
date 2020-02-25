@@ -1,13 +1,10 @@
 #from MyFunc import *
 from socket import *
 from json import *
+from cait_essentials import *
 
 #####其他文件的函数
-def recongnize_face():
-    res = {}
-    res["name"] = "Michael"
-    res["coordinates"] = [23, 55, 56, 175]
-    return res
+
 #####
 
 Host = '127.0.0.1'
@@ -41,7 +38,7 @@ while 1:
             Res = dumps(Res)
             print("Res = " + Res)
             Conn.sendall(bytes(Cont + str(Res), 'UTF-8'))
-            print("============\n\n")
+            print("============\n")
 
     except Exception as Res:
         print(Res)
